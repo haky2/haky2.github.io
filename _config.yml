@@ -14,7 +14,7 @@ subtitle: "daily stuff"
 email: haky2@naver.com
 name: haky
 description: >
-  A simple yet classy theme for your Jekyll website or blog.
+  do stuff
 # Base URL of site (i.e. /blog). It should always start with a slash,
 # and never end with a slash. Set it to a blank value if hosting at the
 # root of your server.
@@ -82,4 +82,17 @@ social:
     url: https://github.com/haky2
     desc: Fork me on GitHub
     share: true
+defaults:
+  - scope:
+      path: "/"
+      type: posts
+    values:
+      layout: article
+      sharing: false
+      license: false
+      aside:
+        toc: true
+      show_edit_on_github: true
+      show_subscribe: true
+      pageview: true
 
