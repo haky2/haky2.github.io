@@ -3,7 +3,7 @@ title: Spring Boot Annotation
 tags: 
     - java
     - spring boot
-categories: JAVA
+categories: Spring Boot
 layout: post
 ---
     

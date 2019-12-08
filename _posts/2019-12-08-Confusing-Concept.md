@@ -3,7 +3,7 @@ title: 헷갈리는 개념 정리
 tags: 
     - java
     - spring
-categories: JAVA
+categories: Spring Boot
 layout: post
 ---
 
