@@ -3,7 +3,7 @@ title: Spring Boot 정리
 tags: 
     - java
     - spring boot
-categories: Spring Boot
+categories: Spring-Boot
 layout: post
 ---
 
