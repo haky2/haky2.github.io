@@ -51,3 +51,44 @@ layout: post
 * @EnabledAutoConfiguration : 클래스 경로에 지정된 내용을 기반으로 설정 자동화 수행. @Configuration과 함께 사용해야 함
 * @ComponentScan : 특정 패키지 경로를 기반으로 @Configuration에서 사용할 @Component 설정 클래스를 찾음
 * @Configuration : 하나 이상의 bean을 구성한 클래
+
+
+### 참고
+* [spring annotation](https://gmlwjd9405.github.io/2018/12/02/spring-annotation-types.html)
+---
+
+### Spring Boot Test
+* @SpringBootTest : 통합 테스트를 제공하는 기본적인 어노테이 (애플리케이션에 설정된 빈을 모두 로드하여 규모가 크면 느림. 단위테스트...?!)
+    * value : 프로퍼티 주입
+    * properties : 프로퍼티 추가
+    * classes : 로드할 클래스 지정 (기본 : @SpringBootConfiguration)
+    * webEnvironment : 웹 환경 설정 (기본 : Mock 서블)
+    * @Transactional을 사용하면 테스트를 마치고 나서 수정된 데이터가 롤백 됨
+* @RunWith : JUnit에 내장된 러너 대신 어노테이션에 정의된 러너 클래스 사용 (@SpringBootTest 사용시 @RunWith(SpringRunner.class) 필요)
+* @ActiveProfiles : @ActiveProfiles("local")과 같은 방식으로 원하는 프로파일 환경값을 부여하여 사용 가능
+* @WebMvcTest : MVC를 위한 테스트
+    * 컨트롤러 테스트에 적합
+    * 웹상에서 요청과 응답에 대해 테스트
+    * 시큐리티/필터까지 자동으로 테스트하며 수동으로 추가/삭제 가능
+* @DataJpaTest : JPA 관련 테스트
+    * JPA를 사용하여 데이터 생성, 수정, 삭제 등의 테스트
+    * 실제 DB를 사요아힞 않고 내장형 DB 사용 가능
+    * 기본적으로 인메모리 임베디드 데이터베이스 사용()
+    * JPA 테스트가 끝날 때마다 자동으로 테스트에 사용한 데이터를 롤백
+* @AutoConfigureTestDatabse : 데이터 소스 사용 지정
+    * @AutoConfigureTestDatabse(replace = AutoConfigureTestDatabse.Replace.ANY) : 기본 내장 데이터소스 사용
+    * @AutoConfigureTestDatabse(replace = AutoConfigureTestDatabse.Replace.NONE) : @ActiveProfiles에 설정한 데이터소스 사용
+    * application.yml > spring.test.database.replace : NONE 위와 동일
+    * @AutoConfigureTestDatabse(connection = H2) : 데이터 베이스 선택 (H2, Derby...)
+    * application.yml > spring.test.database.connection: H2
+* @JdbcTest : JDBC 관련 테스트
+* @DataMongoTest : 몽고디비 관련 테스트
+* @RestClientTest : REST 관련 테스트(JSON이 제대로 반환되는지 등을 테스트)
+* @Rule : @After, @Before 어노테이션에 상관없이 하나의 테스트 메소드가 끝날 때마다 정의한 값으로 초기화 시켜줌
+* @JsonTest : JSON 테스트
+    * JSON의 직렬화와 역직렬화를 수행하는 라이브러리인 Gson과 Jackson API의 테스트를 제공
+    * 문자열로 나열된 JSON 데이터를 객체로 변환하여 변환된 객체값을 테스트하거나 그 반
+
+### 참고
+* [Spring Boot Test](https://meetup.toast.com/posts/124)
+* [Spring Test Guide](https://www.popit.kr/spring-guide-테스팅-전략/)
