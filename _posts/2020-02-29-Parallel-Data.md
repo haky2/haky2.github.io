@@ -13,7 +13,7 @@ layout: post
     - parallelStream으로 생성
     - 각각의 프로세서가 각각의 청크를 처리하도록 할당할 수 있음
 
-```
+```java
 
 public static long parallelSum(long n) {
     return Stream.iterate(1L, i -> i + 1)
