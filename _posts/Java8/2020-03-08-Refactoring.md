@@ -6,13 +6,11 @@ categories: JAVA
 layout: post
 ---
 
-# 리팩토링
----
-## 가독성과 유연성을 개선하는 리팩토링
-### 코드 가독성
+#### 코드 가독성
 - 우리가 구현한 코드를 다른 사람이 쉽게 이해하고 유지보수할 수 있게 만드는 것
 
-### 익명 클래스를 람다 표현식으로 리팩토링하기
+---
+#### 익명 클래스를 람다 표현식으로 리팩토링하기
 - 람다 표현식은 익명 클래스보다 코드를 좀 더 간결하게 만듦
 ```java
 // 익명 클래스를 사용한 코드
@@ -31,17 +29,19 @@ Runnable r2 = () -> System.out.println("Hello");
     > In case of anonymous inner class this keyword refers to local scope and super keyword refers to the anonymous class’s super class.
     > While in case of lambda expression this keyword refers to the object of the enclosing type and super will refer to the enclosing class’s super class.
     > <br/><br/>[http://www.code2succeed.com/lambdas-vs-anonymous-inner-classes/](http://www.code2succeed.com/lambdas-vs-anonymous-inner-classes/)
-
-- 익명 클래스는 감싸고 있는 클래스의 변수를 가릴 수 있으나, 람다 표현식은 불가능(shadow variable). 컴파일 오류 발생
-- 익명 클래스를 람다 표현식으로 바꾸면 콘텍스트 오버로딩(형식 추론)에 따른 모호함이 초래됨. 익명 클래스는 인스턴스화할 때 명시적으로 형식이 정해지는 반면 람다의 형식은 콘텍스트에 따라 달라지기 때문
+    2. 익명 클래스는 감싸고 있는 클래스의 변수를 가릴 수 있으나, 람다 표현식은 불가능(shadow variable).
+    <br/>컴파일 오류 발생
+    3. 익명 클래스를 람다 표현식으로 바꾸면 콘텍스트 오버로딩(형식 추론)에 따른 모호함이 초래됨.
+    <br/>익명 클래스는 인스턴스화할 때 명시적으로 형식이 정해지는 반면 람다식은 콘텍스트에 따라 달라지기 때문
 ```java
 // 모호함이 발생할 경우 형변환을 하여 해결
 doSomething((Task)() -> System.out.println(“Hello”));
 ```
 
-### 람다 표현식을 메서드 레퍼런스로 리팩토링하기
+---
+#### 람다 표현식을 메서드 레퍼런스로 리팩토링하기
 - 람다 표현식을 별도의 메서드로 추출한 다음에 메서드 레퍼런스를 이용하면 가독성을 높일 수 있음
-- comparing, maxBy, summingInt, maximum 같은 정적 헬퍼 메서드와 Collectors API를 활용하는 것이 좋음
+- comparing, maxBy, summingInt, maximum 같은 정적 헬퍼 메서드와 Collectors API를 활용
 ```java
 // 메서드 레퍼런스 활용
 Map<CaloricLevel, List<Dish>> dishesByCaloricLevel 
@@ -52,16 +52,19 @@ inventory.sort(comparing(Apple::getWeight));
 menu.stream().collect(summingInt(Dish::getCalories));
 ```
 
-### 명령형 데이터 처리를 스트림으로 리팩토링하기
+---
+#### 명령형 데이터 처리를 스트림으로 리팩토링하기
 - 스트림 API는 데이터 처리 파이프라인의 의도를 명확하게 보여줌
 - 쇼트서킷과 게으름이라는 최적화와 멀티코어 아키텍처(병렬처리)를 활용할 수 있음
 
-### 코드 유연성 개선
+---
+#### 코드 유연성 개선
 - 함수형 인터페이스 적용
     - 조건부 연기 실행
     - 실행 어라운
 
-## 람다로 객체지향 디자인 패턴 리팩토링하기
+---
+#### 람다로 객체지향 디자인 패턴 리팩토링하기
 1. 전략 패턴
 - 한 유형의 알고리즘을 보유한 상태에서 런타임에 적절한 알고리즘을 선택하는 기법
 - 알고리즘을 나타내는 `인터페이스`, 인터페이스를 `구현한 클래스`, 전략 객체를 사용하는 `클라이언트`로 구성
@@ -116,10 +119,10 @@ Loan loan = loanSupplier.get();
 ```
 
 ---
-# 람다 테스팅
+#### 람다 테스팅
 - 람다 표현식 자체를 테스트하는 것보다는 람다 표현식이 사용되는 메서드의 동작을 테스트하는 것이 바람직
 
 ---
-# 람다 디버깅
+#### 람다 디버깅
 - 람다 표현식을 사용하면 스택 트레이스를 이해하기 어려움
 - 스트림 파이프라인에서 요소를 처리할 때 peek 메서드로 중간값 확인 가능
