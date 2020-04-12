@@ -24,6 +24,7 @@ layout: post
 - [Load Balancer](https://nesoy.github.io/articles/2018-06/Load-Balancer)
 - [apache vs tomcat](https://limmmee.tistory.com/4)
 - [PHP Memory and GC](https://blog.naver.com/tmondev/220367194049)
+- [Dirty Checking](https://jojoldu.tistory.com/415)
 
 
 ## 크게 덩어리
